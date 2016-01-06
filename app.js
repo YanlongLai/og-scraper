@@ -2,8 +2,6 @@ var express = require('express');
 var app = express();
 var ogs = require('open-graph-scraper');
 
-
-
 app.get('/:url', function (req, res) {
   var url = decodeURIComponent(req.params.url);
   if (url) {
