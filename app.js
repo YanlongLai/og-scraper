@@ -3,7 +3,8 @@ var app = express();
 var cors = require('cors');
 var ogs = require('open-graph-scraper');
 
-app.get('/:url', function (req, res) {
+app.options('/:url', cors());
+app.get('/:url', cors(), function (req, res) {
   var url = decodeURIComponent(req.params.url);
   if (url) {
     var options = {'url':url};
@@ -18,8 +19,6 @@ app.get('/:url', function (req, res) {
     res.send('Hello!');
   }
 });
-
-app.use(cors());
 
 app.set('port', (process.env.PORT || 3000));
 
