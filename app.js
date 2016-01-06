@@ -7,7 +7,11 @@ app.get('/:url', function (req, res) {
   if (url) {
     var options = {'url':url};
     ogs(options, function(err, results) {
-      res.json(results);
+      if (results.success) {
+        res.json(results);
+      } else {
+        res.sendStatus(404);
+      }
     });
   } else {
     res.send('Hello!');
