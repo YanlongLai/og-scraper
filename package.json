@@ -9,6 +9,7 @@
   "author": "Daniel Hoffmann",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.7.1",
     "express": "^4.13.3",
     "open-graph-scraper": "^1.0.1"
   }
