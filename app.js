@@ -7,7 +7,7 @@ app.options('/:url', cors());
 app.get('/:url', cors(), function (req, res) {
   var url = decodeURIComponent(req.params.url);
   if (url) {
-    var options = {'url':url};
+    var options = {'url':url, 'timeout':15000};
     ogs(options, function(err, results) {
       if (results.success) {
         res.json(results);
