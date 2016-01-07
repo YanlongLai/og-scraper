@@ -12,12 +12,12 @@ app.get('/:url', cors(), function (req, res) {
     request(url, function (error, response, body) {
       if (!error) {
         var $ = cheerio.load(body);
-        var tags = [];
+        var tags = {};
         $('meta[property*="og:"], meta[property*="twitter:"]').each(function(i, el){
-          tags[i] = {
-            property: $(this).attr('property'),
-            content: $(this).attr('content')
-          }
+          var $this = $(this);
+          var prop = $this.attr('property');
+          var con = $this.attr('content');
+          tags[prop] = con;
         });
         res.json(tags);
       } else {
