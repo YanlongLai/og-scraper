@@ -4,13 +4,12 @@ var cors = require('cors');
 var request = require('request');
 var cheerio = require ('cheerio');
 
-request = request.defaults({jar: request.jar()});
 app.use(cors());
 
-app.get('/:url', function (req, res) {
-  var url = decodeURI(req.params.url);
+app.get('/:url', function(req, res) {
+  var url = decodeURIComponent(req.params.url);
   if (url) {
-    request(url, function (error, response, body) {
+    request(url, function(error, response, body) {
       if (!error) {
         var $ = cheerio.load(body);
         var tags = {};
@@ -33,4 +32,4 @@ app.get('/:url', function (req, res) {
 
 app.set('port', (process.env.PORT || 3000));
 
-var server = app.listen(app.get('port'), function () {});
+app.listen(app.get('port'), function() {});
