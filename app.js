@@ -2,12 +2,13 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var request = require('request');
-request = request.defaults({ jar: request.jar() });
 var cheerio = require ('cheerio');
-app.options('/:url', cors());
 
-app.get('/:url', cors(), function (req, res) {
-  var url = decodeURIComponent(req.params.url);
+request = request.defaults({jar: request.jar()});
+app.use(cors());
+
+app.get('/:url', function (req, res) {
+  var url = decodeURI(req.params.url);
   if (url) {
     request(url, function (error, response, body) {
       if (!error) {
